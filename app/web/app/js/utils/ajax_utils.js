@@ -1,7 +1,7 @@
 import Promise from 'bluebird';
 
 module.exports = {
-  get: function(url) {
+  get(url) {
     return new Promise(function(resolve, reject) {
       $.get(url)
         .done(function(response) {
@@ -12,7 +12,7 @@ module.exports = {
         });
     });
   },
-  post: function(url, data) {
+  post(url, data) {
     return new Promise(function(resolve, reject) {
       $.post(url, data)
         .done(function(response) {

@@ -68,14 +68,18 @@ const initialState = {
   })
 };
 
-function financesReducer(state = initialState, action) {
+export default function financesReducer(state = initialState, action) {
   switch (action.type) {
     case ActionTypes.SEARCH_CRAIGSLIST:
-      return defaultFetchHandler(state, action.propName, action.result, action.status, action.type);
+      return defaultFetchHandler(
+        state,
+        action.propName,
+        action.result,
+        action.status,
+        action.type
+      );
 
     default:
       return state;
   }
 }
-
-module.exports = financesReducer;

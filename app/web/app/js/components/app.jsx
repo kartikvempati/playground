@@ -1,6 +1,6 @@
 import {Input} from 'react-bootstrap';
 
-class App extends React.Component {
+export default class App extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -24,5 +24,3 @@ App.propTypes = {
   searchCraigslist: React.PropTypes.func,
   search: React.PropTypes.string
 };
-
-module.exports = App;

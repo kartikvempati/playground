@@ -1,4 +1,4 @@
-module.exports = (() => {
+export default (() => {
   const statuses = {
     SUCCESS: 'success',
     FETCHING: 'fetching',

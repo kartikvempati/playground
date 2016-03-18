@@ -1,5 +1,5 @@
 import {bindActionCreators} from 'redux';
-import {connect} from 'react-redux';
+import {connect as Connect} from 'react-redux';
 
 // Constants
 import ActionTypes from 'action_types';
@@ -10,18 +10,29 @@ import AppActions from 'app_actions';
 // Components
 import App from '../components/app';
 
-class AppContainer extends React.Component {
+const mapStateToProps = (state) => {
+  return {
+    app: state.app
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators(AppActions, dispatch);
+};
+
+@Connect(mapStateToProps, mapDispatchToProps)
+export default class AppContainer extends React.Component {
   constructor() {
     super();
   }
 
   _searchCraigslist(e) {
-    const {searchCraigslist} = bindActionCreators(AppActions, this.props.dispatch);
     const val = e.target.value;
-    searchCraigslist(val);
+    this.props.searchCraigslist(val);
   }
 
   render() {
+    console.log('[app_container] this.props: ', this.props);
     const {
       dispatch,
       app,
@@ -42,9 +53,3 @@ AppContainer.propTypes = {
   dispatch: React.PropTypes.func,
   finances: React.PropTypes.object,
 };
-
-module.exports = connect((state) => {
-  return {
-    app: state.app
-  };
-})(AppContainer);

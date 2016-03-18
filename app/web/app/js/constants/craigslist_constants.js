@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   CATEGORIES: {
     sss: 'all',
     ata: 'antiques',

@@ -1,3 +1,3 @@
-module.exports = {
+export default {
   SEARCH_CRAIGSLIST: 'SEARCH_CRAIGSLIST'
 };

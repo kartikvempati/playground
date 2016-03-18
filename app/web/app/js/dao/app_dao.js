@@ -1,8 +1,7 @@
 import AjaxUtils from 'ajax_utils';
 import querystring from 'querystring';
-// import Promise from 'bluebird';
 
-module.exports = {
+export default {
   searchCraigslist: function(query) {
     let queryObj = {
       search: query

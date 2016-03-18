@@ -39,7 +39,7 @@ gulp.task('build', [
 
 /* ========== Dev Tasks ========== */
 gulp.task('dev', ['build'], () => {
-  gulp.watch([APP_JS + ALL_JS, APP_JS + ALL_JSX], ['_minify-bundle-js']);
+  gulp.watch([APP_JS + ALL_JS, APP_JS + ALL_JSX], ['scripts']);
   gulp.watch(APP_STYLE + ALL_CSS, ['styles']);
   gulp.watch(APP + '*.html', ['html']);
   gulp.watch([
@@ -50,33 +50,7 @@ gulp.task('dev', ['build'], () => {
 });
 
 /* ========== JS Tasks ========== */
-gulp.task('scripts', (cb) => {
-  runSequence(
-    '_webpack',
-    ['_minify-bundle-js', '_minify-vendor-js'],
-    cb
-  );
-});
-
-gulp.task('_minify-bundle-js', ['_webpack'], () => {
-  return gulp.src(TMP_JS + 'bundle.js')
-    .pipe($.plumber())
-    .pipe($.uglify())
-    .pipe($.rename({extname: '.min.js'}))
-    .pipe($.plumber.stop())
-    .pipe(gulp.dest(DIST_STATIC))
-    ;
-});
-
-gulp.task('_minify-vendor-js', () => {
-  return gulp.src(TMP_JS + 'vendor.bundle.js')
-    .pipe($.plumber())
-    .pipe($.uglify())
-    .pipe($.rename({extname: '.min.js'}))
-    .pipe($.plumber.stop())
-    .pipe(gulp.dest(DIST_STATIC))
-    ;
-});
+gulp.task('scripts', ['_webpack']);
 
 gulp.task('_webpack', () => {
   return gulp.src(APP_JS + ALL_JS)
@@ -89,7 +63,8 @@ gulp.task('_webpack', () => {
 });
 
 /* ========== Style Tasks ========== */
-gulp.task('styles', ['_minify-css']);
+// gulp.task('styles', ['_minify-css']);
+gulp.task('styles', ['_sass', '_css']);
 
 gulp.task('_sass', () => {
   return gulp.src(APP_STYLE_SASS + ALL_SCSS)
@@ -112,19 +87,6 @@ gulp.task('_css', () => {
     .pipe($.plumber.stop())
     .pipe(gulp.dest(TMP_STYLE))
     .pipe(gulp.dest(DIST_STATIC))
-    ;
-});
-
-gulp.task('_minify-css', ['_sass', '_css'], () => {
-  return gulp.src(TMP_STYLE + ALL_CSS)
-    .pipe($.plumber())
-    .pipe($.cssnano())
-    .pipe($.rename({
-      dirname: 'static',
-      extname: '.min.css',
-    }))
-    .pipe($.plumber.stop())
-    .pipe(gulp.dest(DIST))
     ;
 });
 
