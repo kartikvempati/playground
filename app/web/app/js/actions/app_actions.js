@@ -1,6 +1,5 @@
 import ActionTypes from 'action_types';
 import AppDao from '../dao/app_dao';
-import Promise from 'bluebird';
 import ASYNC from 'async_status';
 
 const ASYNC_ACTIONS = {

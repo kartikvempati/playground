@@ -1,24 +1,22 @@
-import Promise from 'bluebird';
-
-module.exports = {
+export default {
   get(url) {
-    return new Promise(function(resolve, reject) {
+    return new Promise((resolve, reject) => {
       $.get(url)
-        .done(function(response) {
+        .done((response) => {
           resolve(response);
         })
-        .fail(function(err) {
+        .fail((err) => {
           reject(err);
         });
     });
   },
   post(url, data) {
-    return new Promise(function(resolve, reject) {
+    return new Promise((resolve, reject) => {
       $.post(url, data)
-        .done(function(response) {
+        .done((response) => {
           resolve(response);
         })
-        .fail(function(err) {
+        .fail((err) => {
           reject(err);
         });
     });

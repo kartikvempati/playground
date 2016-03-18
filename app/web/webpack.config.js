@@ -6,7 +6,6 @@ module.exports = {
   entry: {
     app: __dirname + '/app/js/main',
     vendor: [
-      'bluebird',
       'history',
       'jquery',
       'lodash',
